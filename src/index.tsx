@@ -4,12 +4,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./css/style.scss";
 import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { StoreProvider } from "./store";
+const queryClient = new QueryClient();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<QueryClientProvider client={queryClient}>
+			<StoreProvider>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</StoreProvider>
+		</QueryClientProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
